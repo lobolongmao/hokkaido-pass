@@ -1,0 +1,255 @@
+<!DOCTYPE html>
+<html lang="zh-Hant">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>四季通行證試算</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Inter+Tight:wght@400;500;600;700&family=Noto+Sans+TC:wght@400;500;700&family=Noto+Serif+TC:wght@600&display=swap" rel="stylesheet">
+<style>
+/* VOICE corporate, premium, confident: a travel company's membership product
+   IDEA a premium membership card you hold first, then open your year's statement
+   PICTURE screen 1: the pass card itself, large; screen 2: a clean statement with a charcoal result panel
+   COLOUR white and warm grey, charcoal ink, one corporate red accent; season colours only as thin bars
+   TYPE Inter Tight + Noto Sans TC, Noto Serif TC for the card name
+   LAYOUT screen 1 centred card with call to action; screen 2 inputs left, sticky result right, breakdown below */
+:root{color-scheme:light dark;--bg:light-dark(#f5f4f1,#111315);--paper:light-dark(#ffffff,#1a1d20);--ink:light-dark(#17191c,#eceef0);--soft:light-dark(#62676d,#a3a9af);--line:light-dark(#e3e1dc,#2c3035);--red:light-dark(#c8102e,#ff4d5e);--char:#1d2024;--win:#9cc3dc;--spr:#f2a7bb;--sum:#9b86d4;--aut:#e58a45;--peak:#e8a33d;--reg:#b9cdd8;--off:#6fb3d6;--super:#c8102e}
+:root[data-theme=light]{color-scheme:light}:root[data-theme=dark]{color-scheme:dark}
+*{box-sizing:border-box;min-width:0}
+html,body{margin:0;height:100%}
+body{background:var(--bg);color:var(--ink);font:16px/1.55 "Inter Tight","Noto Sans TC",system-ui,sans-serif;overflow-x:clip}
+h1,h2,h3{margin:0;line-height:1.15;text-wrap:balance;letter-spacing:-.01em}
+h2{font-size:clamp(24px,3vw,32px);font-weight:700}
+h3{font-size:15px;font-weight:600;color:var(--soft);margin-bottom:10px}
+button,select{font:inherit;font-size:16px;color:var(--ink)}
+button{cursor:pointer}
+button:focus-visible,select:focus-visible{outline:3px solid var(--red);outline-offset:2px}
+.bar{display:flex;justify-content:space-between;align-items:center;gap:12px;padding:16px max(4vw,16px);max-width:1200px;margin:0 auto}
+.brand{font-weight:700;letter-spacing:.02em}
+.brand span{color:var(--red)}
+.lang{display:inline-flex;border:1px solid var(--line);border-radius:999px;padding:3px;background:var(--paper)}
+.lang button{border:0;background:transparent;border-radius:999px;padding:6px 14px;min-height:36px;font-size:14px}
+.lang button[aria-pressed=true]{background:var(--ink);color:var(--paper)}
+.view{display:none}.view.on{display:block}
+#home{min-height:calc(100% - 72px)}
+.hero{max-width:1200px;margin:0 auto;padding:clamp(16px,4vw,48px) max(4vw,16px) 48px;display:grid;grid-template-columns:minmax(0,.9fr) minmax(0,1.1fr);gap:clamp(24px,5vw,64px);align-items:center}
+.hero h1{font-size:clamp(34px,4.6vw,54px);font-weight:700}
+.hero p{color:var(--soft);font-size:18px;max-width:46ch;margin:16px 0 26px}
+.cta{display:inline-flex;align-items:center;gap:10px;background:var(--red);color:#fff;border:0;border-radius:999px;padding:14px 26px;min-height:52px;font-weight:600;font-size:17px}
+.cta:hover{filter:brightness(1.08)}
+.facts{display:flex;flex-wrap:wrap;gap:22px;margin-top:30px;font-size:14px;color:var(--soft)}
+.facts b{display:block;font-size:22px;color:var(--ink)}
+.card{position:relative;aspect-ratio:1.586;width:100%;max-width:560px;justify-self:center;border-radius:22px;background:linear-gradient(135deg,#25292e 0%,#15171a 60%,#2b2f35 100%);color:#fff;padding:clamp(18px,3.4vw,30px);box-shadow:0 30px 60px -20px rgba(0,0,0,.45),0 0 0 1px rgba(255,255,255,.06) inset;overflow:hidden;border:0;text-align:left;display:grid;grid-template-rows:auto 1fr auto;transition:transform .4s ease}
+.card:hover{transform:translateY(-4px) rotate(-.6deg)}
+.card .sheen{position:absolute;inset:0;background:linear-gradient(110deg,transparent 30%,rgba(255,255,255,.10) 45%,transparent 60%);pointer-events:none}
+.card .stripe{position:absolute;right:0;top:0;bottom:0;width:22%;background:linear-gradient(180deg,var(--win),var(--spr) 35%,var(--sum) 65%,var(--aut));opacity:.9}
+.card .stripe::before{content:"";position:absolute;left:-14px;top:0;bottom:0;width:14px;background:var(--red)}
+.c1{display:flex;justify-content:space-between;gap:10px;position:relative;width:74%}
+.c1 small{font-size:12px;letter-spacing:.08em;color:#c9ced3}
+.chipx{width:46px;height:34px;border-radius:7px;background:linear-gradient(135deg,#d9c27a,#a8893d);position:relative}
+.chipx::after{content:"";position:absolute;inset:8px 10px;border:1px solid rgba(0,0,0,.25);border-radius:3px}
+.cname{font-family:"Noto Serif TC",serif;font-size:clamp(22px,3.4vw,32px);align-self:center;position:relative;width:74%}
+.cname em{display:block;font-family:"Inter Tight",sans-serif;font-style:normal;font-size:clamp(12px,1.6vw,15px);letter-spacing:.14em;color:#c9ced3;margin-top:4px}
+.c3{display:grid;grid-template-columns:repeat(3,auto);justify-content:start;gap:clamp(14px,3vw,30px);position:relative;width:76%}
+.c3 small{display:block;font-size:11px;letter-spacing:.08em;color:#aeb4ba}
+.c3 b{font-size:clamp(14px,1.8vw,17px);font-weight:600;white-space:nowrap}
+.num{position:absolute;right:26%;bottom:clamp(18px,3.4vw,30px);font-size:13px;letter-spacing:.12em;color:#aeb4ba;margin-right:18px;display:none}
+.cardcol{display:grid;justify-items:center;gap:14px}.tap{font-size:14px;color:var(--soft);margin:0}
+.wrap{max-width:1200px;margin:0 auto;padding:8px max(4vw,16px) 56px}
+.back{border:0;background:none;color:var(--soft);padding:8px 0;min-height:40px}
+.calc{display:grid;grid-template-columns:minmax(0,1.15fr) minmax(0,.85fr);gap:clamp(18px,3vw,32px);align-items:start;margin-top:18px}
+.box{background:var(--paper);border:1px solid var(--line);border-radius:16px;padding:clamp(18px,2.6vw,26px);margin-bottom:16px}
+.seg{display:flex;flex-wrap:wrap;gap:8px}
+.seg button{border:1px solid var(--line);background:var(--paper);border-radius:10px;padding:9px 14px;min-height:44px}
+.seg button[aria-pressed=true]{border-color:var(--ink);background:var(--ink);color:var(--paper)}
+.trip{display:grid;grid-template-columns:6px 5em minmax(0,1fr) minmax(0,1fr) minmax(0,1.1fr);gap:12px;align-items:center;padding:12px 0;border-top:1px solid var(--line)}
+.trip i{height:100%;min-height:40px;border-radius:3px;background:var(--s)}
+.trip b{font-weight:600}
+.trip b small{display:block;font-weight:500;font-size:12px;color:var(--soft)}
+select{width:100%;min-height:44px;padding:8px 10px;border-radius:10px;border:1px solid var(--line);background:var(--paper)}
+select:disabled{opacity:.45}
+.note{font-size:13px;color:var(--soft);margin-top:10px}
+.res{position:sticky;top:16px;background:var(--char);color:#fff;border-radius:18px;padding:24px}
+.res .l{font-size:14px;color:#b7bdc3}
+.big{font-size:clamp(40px,5.4vw,56px);font-weight:700;line-height:1;white-space:nowrap;font-variant-numeric:tabular-nums;margin:6px 0}
+.saveB{display:inline-block;background:var(--red);color:#fff;border-radius:6px;padding:4px 10px;font-weight:600;font-size:15px}
+.kv{display:flex;justify-content:space-between;gap:12px;padding:8px 0;border-bottom:1px solid rgba(255,255,255,.12);font-size:15px}
+.kv span:last-child{white-space:nowrap;font-variant-numeric:tabular-nums}
+.msg{border-left:3px solid #fff;padding:4px 0 4px 10px;margin-top:12px;font-size:14px;color:#dfe3e6}
+.msg.w{border-color:var(--red);color:#fff}
+.yr{display:flex;height:8px;border-radius:4px;overflow:hidden;margin-top:18px}
+.yr div{height:100%}
+.pins{position:relative;height:24px;margin-top:5px}
+.pin{position:absolute;top:0;transform:translateX(-50%);width:22px;height:22px;border-radius:50%;background:#fff;color:var(--char);font-size:12px;font-weight:700;display:grid;place-items:center}
+.scroll{overflow-x:auto}
+table{border-collapse:collapse;width:100%;font-size:15px}
+th,td{border-bottom:1px solid var(--line);padding:10px 8px;text-align:left;vertical-align:top}
+th{font-size:13px;color:var(--soft);font-weight:500}
+.n{text-align:right;white-space:nowrap;font-variant-numeric:tabular-nums}
+tfoot td{font-weight:700;border-bottom:0}
+.dot{display:inline-block;width:9px;height:9px;border-radius:50%;margin-right:6px}
+.cols{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:16px}
+.cols ul{margin:0;padding-left:20px}.cols li{margin:5px 0}
+details summary{cursor:pointer;font-weight:600;min-height:32px}
+@media(max-width:900px){.hero,.calc{grid-template-columns:minmax(0,1fr)}.res{position:static}.card{max-width:520px}.hero{padding-bottom:70px}}
+@media(max-width:600px){.cols{grid-template-columns:minmax(0,1fr)}.trip{grid-template-columns:6px minmax(0,1fr) minmax(0,1fr)}.trip b{grid-column:2/-1}.trip select{grid-column:auto}.trip .bon{grid-column:2/-1}.trip i{grid-row:span 3}table{font-size:13px}th,td{padding:7px 4px}}
+@media(prefers-reduced-motion:no-preference){.view.on{animation:in .45s ease}@keyframes in{from{opacity:0;transform:translateY(12px)}to{opacity:1;transform:none}}.card .sheen{animation:sh 5s ease-in-out infinite}@keyframes sh{0%,60%{transform:translateX(-60%)}100%{transform:translateX(60%)}}}
+</style>
+</head>
+<body>
+<div class="bar">
+<div class="brand">FOUR-SEASON <span>PASS</span></div>
+<div class="lang" id="lang" role="group" aria-label="Language"><button data-l="zh">中文</button><button data-l="en">EN</button></div>
+</div>
+
+<main id="home" class="view on">
+<div class="hero">
+<div>
+<h1 data-t="hTitle"></h1>
+<p data-t="hSub"></p>
+<button class="cta" id="go"><span data-t="cta"></span><span aria-hidden="true">→</span></button>
+<div class="facts" id="facts"></div>
+</div>
+<div class="cardcol">
+<button class="card" id="cardBtn" aria-label="Open calculator">
+<span class="sheen"></span><span class="stripe"></span>
+<div class="c1"><div><small>HOKKAIDO</small><br><small id="cKind"></small></div><span class="chipx"></span></div>
+<div class="cname"><span data-t="cName"></span><em>FOUR-SEASON PASS</em></div>
+<div class="c3"><div><small data-t="cHolder"></small><b data-t="cHolderV"></b></div><div><small data-t="cTrips"></small><b id="cTripsV"></b></div><div><small data-t="cValid"></small><b>2027.01–12</b></div></div>
+</button>
+<p class="tap" data-t="tap"></p>
+</div>
+</div>
+</main>
+
+<main id="calcV" class="view">
+<div class="wrap">
+<button class="back" id="back" data-t="back"></button>
+<h2 data-t="cTitle"></h2>
+<div class="calc">
+<div>
+<div class="box">
+<h3 data-t="whoL"></h3>
+<div class="seg" id="who"><button data-v="pair"></button><button data-v="comp"></button><button data-v="solo"></button></div>
+<h3 data-t="verL" style="margin-top:18px"></h3>
+<div class="seg" id="ver"><button data-n="2"></button><button data-n="3"></button><button data-n="4"></button></div>
+</div>
+<div class="box">
+<h3 data-t="tripsL"></h3>
+<div id="trips"></div>
+<p class="note" data-t="monthNote"></p>
+</div>
+</div>
+<aside class="res" aria-live="polite">
+<span class="l" data-t="totalL"></span>
+<div class="big" id="total"></div>
+<div class="l" id="house"></div>
+<div style="margin:12px 0 6px"><span class="saveB" id="save"></span></div>
+<div id="kv"></div>
+<div id="msgs"></div>
+<div class="yr" id="yr"></div>
+<div class="pins" id="pins"></div>
+</aside>
+</div>
+
+<div class="box scroll" style="margin-top:8px"><h3 data-t="docT"></h3><table><thead id="th"></thead><tbody id="tb"></tbody><tfoot id="tf"></tfoot></table><p class="note" id="extraNote"></p></div>
+<div class="cols">
+<div class="box"><h3 data-t="perkT"></h3><ul id="perks"></ul></div>
+<div class="box"><h3 data-t="ruleT"></h3><div class="scroll"><table><thead id="rth"></thead><tbody id="rtb"></tbody></table></div><p class="note" data-t="ruleNote"></p></div>
+</div>
+<details class="box"><summary data-t="lionT"></summary><div class="scroll" style="margin-top:8px"><table><tbody id="lion"></tbody></table></div><p class="note" data-t="lionNote"></p></details>
+<p class="note" data-t="assume"></p>
+</div>
+</main>
+
+<script>
+{
+const $=s=>document.querySelector(s);
+const T={
+zh:{hTitle:'一張卡，一整年的北海道',hSub:'旺季先訂、平淡季鎖價、機場到飯店不用自己安排。這是你的四季通行證，點開看看這一年怎麼用。',cta:'幫我算算看',facts:[['2～4 趟','一年內使用'],['3～4 晚','每趟連住一個基地'],['2 個基地','洞爺湖・富良野']],kind:n=>`${n} 趟版`,cName:'北海道四季通行證',cHolder:'持卡人',cHolderV:'王先生',cTrips:'趟數',cValid:'有效期',tap:'點一下卡片開始試算',back:'← 回到通行證',cTitle:'你的一年試算',
+whoL:'出遊人數與房型',pair:'兩人各一張・同房',comp:'我持證＋一位同行者',solo:'一人入住',verL:'通行證版本',ver:n=>`${n} 趟版`,tripsL:'每趟安排（每趟 3 晚）',monthNote:'月份以該月主要等級計算；跨年、春節與薰衣草週為超旺季，另訂加價表。',totalL:'每位持證人總花費',trip:i=>`第 ${i} 趟`,toya:'洞爺湖・登別',furano:'富良野・美瑛',mon:m=>`${m} 月`,peak:'旺季',reg:'平季',off:'淡季',bNight:'淡季加碼：多住一晚',bExp:'淡季加碼：加一項體驗',bNone:'非淡季，無加碼',
+pairH:v=>`兩人合計 ${v}・不含機票`,compH:(c,t)=>`同行者另付 ${c}・兩人合計 ${t}`,soloH:'一人入住另補單人房差',save:(v,p)=>`比自己訂省 ${v}（${p}%）`,
+kPass:n=>`通行證 ${n} 趟（預付 95 折）`,kAdd:'預約時補差額',kSelf:'自己訂要花',kBonus:'淡季加碼價值',
+wPeak:(p,n,c)=>`旺季用了 ${p} 趟，${n} 趟版上限 ${c} 趟。請把其中一趟改到平季或淡季。`,wFur:'新富良野王子 11/5～11/26 休館，此趟改住後備飯店，或改去洞爺湖。',iOff:o=>`${o} 趟淡季：享加碼，並各多一次旺季優先預約。`,iOk:(p,c)=>`旺季 ${p}／${c} 趟，符合規則。`,
+docT:'試算明細',th:['趟次','基地','月份','晚數','通行證','補差額','你付','自己訂','加碼'],total:'合計',dNight:'多住一晚',dExp:'加一項體驗',worth:v=>`約 ${v}`,
+compNote:v=>`同行者每趟付單趟價（NT$11,500＋該趟補差額，無預付折扣），合計 ${v}；一年內加購通行證可依比例折抵。`,soloNote:'一人入住每趟另補單人房差；部分景觀房型不接受單人入住。',
+perkT:'通行證權益',perks:o=>['每趟入住看得到當季景色的飯店，含早晚餐','每趟一項季節招牌體驗','新千歲機場往返固定班次接駁','旺季比一般客人更早預約，價格不高於飯店公開價','平淡季價格購買時鎖定',o?`${o} 趟淡季加碼＋${o} 次旺季優先權`:'淡季入住享多住一晚或加一項體驗','未用完趟數以八成轉為雄獅幣'],
+ruleT:'預約與取消',rth:['等級','開放預約','免費取消','視同使用一趟'],rows:[['旺季','出發前 6 個月（超旺季 9 個月）','60 天前','13 天內或未到'],['平季、淡季','隨時','14 天前','13 天內或未到']],ruleNote:'旺季 14～59 天前取消收分段手續費、不扣趟。天災、航班取消可於有效期後 6 個月內補住；旅途中天候延誤的接駁由雄獅負擔。',
+lionT:'雄獅端：這張通行證的毛利（簡報備用）',lPay:'持證人實付',lCost:'住宿、稅、接駁、體驗成本',lExtra:'淡季加碼成本（雄獅負擔）',lGp:'雄獅毛利',lionNote:'合約價以零售價八折計；淡季多住一晚由雄獅負擔（洞爺湖每晚約 NT$2,650、富良野約 NT$3,321），加一項體驗約 NT$833。',assume:'試算假設：合約價為零售價八折、匯率 0.2083（2026/11/17 臺銀）、每人金額、兩人一房、不含機票。數字取自報告第八章。雄獅旅遊哈伯造星 Team Vancouver 提案。'},
+en:{hTitle:'One card. A whole year of Hokkaido.',hSub:'Peak dates booked first, regular and off-season prices locked, airport to hotel taken care of. This is your Four-Season Pass: open it to see how your year works.',cta:'Calculate my year',facts:[['2–4 trips','within one year'],['3–4 nights','at one base per trip'],['2 bases','Lake Toya · Furano']],kind:n=>`${n}-TRIP PASS`,cName:'Hokkaido Four-Season Pass',cHolder:'HOLDER',cHolderV:'Mr. Wang',cTrips:'TRIPS',cValid:'VALID',tap:'Tap the card to start',back:'← Back to the pass',cTitle:'Your year, calculated',
+whoL:'Travellers and room',pair:'Two people, one pass each',comp:'Me + a companion',solo:'Staying alone',verL:'Pass',ver:n=>`${n} trips`,tripsL:'Your trips (3 nights each)',monthNote:'Months use their main season tier. New Year, Lunar New Year and lavender week are super-peak with a separate surcharge.',totalL:'Total per pass holder',trip:i=>`Trip ${i}`,toya:'Lake Toya–Noboribetsu',furano:'Furano–Biei',mon:m=>['','Jan','Feb','Mar','Apr','May','Jun','Jul','Aug','Sep','Oct','Nov','Dec'][m],peak:'Peak',reg:'Regular',off:'Off-season',bNight:'Bonus: extra night',bExp:'Bonus: extra experience',bNone:'No bonus outside off-season',
+pairH:v=>`${v} for both · flights not included`,compH:(c,t)=>`Companion pays ${c} · ${t} for both`,soloH:'Single supplement applies',save:(v,p)=>`${v} less than booking yourself (${p}%)`,
+kPass:n=>`Pass, ${n} trips (5% prepay discount)`,kAdd:'Differences paid when booking',kSelf:'Booking it yourself',kBonus:'Value of off-season bonus',
+wPeak:(p,n,c)=>`${p} peak trips exceeds the limit of ${c} for a ${n}-trip pass. Move one trip to regular or off-season.`,wFur:'New Furano Prince is closed 11/5–11/26; a backup hotel is used, or choose Lake Toya.',iOff:o=>`${o} off-season trip(s): bonus included, plus ${o} extra peak priority booking(s).`,iOk:(p,c)=>`Peak trips ${p} of ${c}, within the rules.`,
+docT:'Breakdown',th:['Trip','Base','Month','Nights','Pass','Difference','You pay','Book yourself','Bonus'],total:'Total',dNight:'Extra night',dExp:'Extra experience',worth:v=>`About ${v}`,
+compNote:v=>`The companion pays the single-trip price each trip (NT$11,500 plus the difference, no prepay discount), ${v} in total; credited if they buy a pass within a year.`,soloNote:'A single supplement applies each trip; some view rooms do not take single guests.',
+perkT:'Pass benefits',perks:o=>['A hotel room with a seasonal view on every trip, breakfast and dinner included','One signature seasonal experience per trip','Fixed-schedule New Chitose Airport transfers','Book peak dates before ordinary customers, never above the public price','Regular and off-season prices locked at purchase',o?`${o} off-season bonus(es) + ${o} extra peak priority booking(s)`:'Off-season stays get an extra night or an extra experience','Unused trips convert to Lion Coins at 80%'],
+ruleT:'Booking and cancellation',rth:['Tier','Booking opens','Free cancellation','Counts as a trip used'],rows:[['Peak','6 months before (super-peak 9)','60+ days before','Within 13 days or no-show'],['Regular, off-season','Any time','14+ days before','Within 13 days or no-show']],ruleNote:'Peak cancellations 14–59 days before pay a staged fee, no trip deducted. Disaster or flight cancellations can be made up within 6 months after expiry; extra transfers due to weather during a trip are paid by Lion Travel.',
+lionT:"Lion Travel's margin on this pass (for Q&A)",lPay:'Pass holder pays',lCost:'Hotel, taxes, transfers, experience',lExtra:'Off-season bonus (paid by Lion Travel)',lGp:'Gross profit',lionNote:'Contract rates at 80% of retail. Lion Travel pays for the off-season extra night (about NT$2,650 at Lake Toya, NT$3,321 at Furano); an extra experience costs about NT$833.',assume:'Assumptions: contract rates at 80% of retail, exchange rate 0.2083 (Bank of Taiwan, 2026/11/17), per person, two per room, flights not included. Figures from Chapter 8 of the report. A Lion Travel Hubble programme proposal by Team Vancouver.'}};
+let L='zh';try{L=localStorage.getItem('passLang')||'zh'}catch(e){}
+const t=k=>T[L][k];
+const fmt=v=>(v<0?'−':'')+'NT$'+Math.abs(Math.round(v)).toLocaleString('en-US');
+const UNIT=11500,DISC=.95;
+const add={toya:{off:0,peak:8300},furano:{off:3500,peak:14100}};
+const retail={toya:{off:11332,peak:19830},furano:{off:14885,peak:25662}};
+const cost={toya:{off:9407,peak:16256},furano:{off:12464,peak:21110}};
+const nightCost={toya:2650,furano:3321},EXP=833;
+const tierOf=[null,'peak','peak','reg','off','reg','reg','peak','peak','reg','reg','off','reg'];
+const seasonOf=m=>m===12||m<=2?'win':m<=5?'spr':m<=8?'sum':'aut';
+let who='pair',n=2,trips=[{b:'toya',m:11,bonus:'night'},{b:'furano',m:7,bonus:'night'},{b:'toya',m:2,bonus:'night'},{b:'furano',m:9,bonus:'night'}];
+const opts=(arr,sel)=>arr.map(([v,l])=>`<option value="${v}"${v==sel?' selected':''}>${l}</option>`).join('');
+const show=v=>{$('#home').classList.toggle('on',v==='home');$('#calcV').classList.toggle('on',v==='calc');window.scrollTo(0,0)};
+const route=()=>show(location.hash==='#calc'?'calc':'home');
+const render=()=>{
+  document.documentElement.lang=L==='zh'?'zh-Hant':'en';
+  for(const el of document.querySelectorAll('[data-t]')){const v=t(el.dataset.t);if(typeof v==='string')el.textContent=v}
+  for(const b of $('#lang').children)b.setAttribute('aria-pressed',b.dataset.l===L);
+  $('#facts').innerHTML=t('facts').map(([a,b])=>`<div><b>${a}</b>${b}</div>`).join('');
+  $('#cKind').textContent=t('kind')(n);$('#cTripsV').textContent=String(n);
+  for(const b of $('#who').children){b.textContent=t(b.dataset.v);b.setAttribute('aria-pressed',b.dataset.v===who)}
+  for(const b of $('#ver').children){b.textContent=t('ver')(+b.dataset.n);b.setAttribute('aria-pressed',+b.dataset.n===n)}
+  const months=Array.from({length:12},(_,i)=>[i+1,`${t('mon')(i+1)} · ${t(tierOf[i+1])}`]);
+  $('#trips').innerHTML=trips.slice(0,n).map((x,i)=>{const tier=tierOf[x.m],off=tier==='off';
+    return `<div class="trip" style="--s:var(--${seasonOf(x.m)})"><i></i><b>${t('trip')(i+1)}<small>${t(tier)}</small></b>
+    <select data-i="${i}" data-k="b" aria-label="${t('trip')(i+1)}">${opts([['toya',t('toya')],['furano',t('furano')]],x.b)}</select>
+    <select data-i="${i}" data-k="m" aria-label="${t('trip')(i+1)}">${opts(months,x.m)}</select>
+    <select class="bon" data-i="${i}" data-k="bonus" aria-label="${t('trip')(i+1)}"${off?'':' disabled'}>${off?opts([['night',t('bNight')],['exp',t('bExp')]],x.bonus):`<option>${t('bNone')}</option>`}</select></div>`}).join('');
+  const r=trips.slice(0,n).map((x,i)=>{const tier=tierOf[x.m],p=tier==='peak'?'peak':'off',off=tier==='off',bn=off&&x.bonus==='night',be=off&&x.bonus==='exp';
+    return{i,x,tier,ad:add[x.b][p],pay:UNIT*DISC+add[x.b][p],self:retail[x.b][p],nights:bn?4:3,bn,be,lionExtra:bn?nightCost[x.b]:be?EXP:0,val:bn?retail[x.b].off/3:be?EXP:0,cost:cost[x.b][p],comp:UNIT+add[x.b][p]}});
+  const passT=UNIT*DISC*n,addT=r.reduce((a,x)=>a+x.ad,0),total=passT+addT,self=r.reduce((a,x)=>a+x.self,0),val=r.reduce((a,x)=>a+x.val,0);
+  const peaks=r.filter(x=>x.tier==='peak').length,cap=n===4?2:1,offs=r.filter(x=>x.tier==='off').length,compT=r.reduce((a,x)=>a+x.comp,0);
+  $('#total').textContent=fmt(total);
+  $('#house').textContent=who==='pair'?t('pairH')(fmt(total*2)):who==='comp'?t('compH')(fmt(compT),fmt(total+compT)):t('soloH');
+  $('#save').textContent=t('save')(fmt(self-total),((self-total)/self*100).toFixed(1));
+  $('#kv').innerHTML=`<div class="kv"><span>${t('kPass')(n)}</span><span>${fmt(passT)}</span></div><div class="kv"><span>${t('kAdd')}</span><span>${fmt(addT)}</span></div><div class="kv"><span>${t('kSelf')}</span><span>${fmt(self)}</span></div>${val?`<div class="kv"><span>${t('kBonus')}</span><span>+${fmt(val)}</span></div>`:''}`;
+  let m='';
+  if(peaks>cap)m+=`<div class="msg w">${t('wPeak')(peaks,n,cap)}</div>`;
+  if(r.some(x=>x.x.b==='furano'&&x.x.m===11))m+=`<div class="msg w">${t('wFur')}</div>`;
+  m+=offs?`<div class="msg">${t('iOff')(offs)}</div>`:peaks<=cap?`<div class="msg">${t('iOk')(peaks,cap)}</div>`:'';
+  $('#msgs').innerHTML=m;
+  const yr=[[3,'super'],[56,'peak'],[20,'reg'],[39,'off'],[7,'peak'],[56,'reg'],[14,'peak'],[7,'super'],[41,'peak'],[61,'reg'],[30,'off'],[26,'reg'],[5,'super']];
+  $('#yr').innerHTML=yr.map(([d,c])=>`<div style="flex:${d};background:var(--${c})"></div>`).join('');
+  $('#pins').innerHTML=r.map(x=>`<span class="pin" style="left:${((x.x.m-.5)/12*100).toFixed(1)}%">${x.i+1}</span>`).join('');
+  $('#th').innerHTML='<tr>'+t('th').map((h,k)=>`<th${k>=3&&k<=7?' class="n"':''}>${h}</th>`).join('')+'</tr>';
+  $('#tb').innerHTML=r.map(x=>`<tr><td>${t('trip')(x.i+1)}</td><td>${t(x.x.b)}</td><td><span class="dot" style="background:var(--${x.tier})"></span>${t('mon')(x.x.m)} · ${t(x.tier)}</td><td class="n">${x.nights}</td><td class="n">${fmt(UNIT*DISC)}</td><td class="n">${fmt(x.ad)}</td><td class="n">${fmt(x.pay)}</td><td class="n">${fmt(x.self)}</td><td>${x.bn?t('dNight'):x.be?t('dExp'):'—'}</td></tr>`).join('');
+  $('#tf').innerHTML=`<tr><td colspan="4">${t('total')}</td><td class="n">${fmt(passT)}</td><td class="n">${fmt(addT)}</td><td class="n">${fmt(total)}</td><td class="n">${fmt(self)}</td><td>${val?t('worth')(fmt(val)):'—'}</td></tr>`;
+  $('#extraNote').textContent=who==='comp'?t('compNote')(fmt(compT)):who==='solo'?t('soloNote'):'';
+  $('#perks').innerHTML=t('perks')(offs).map(p=>`<li>${p}</li>`).join('');
+  $('#rth').innerHTML='<tr>'+t('rth').map(h=>`<th>${h}</th>`).join('')+'</tr>';
+  $('#rtb').innerHTML=t('rows').map(row=>'<tr>'+row.map(c=>`<td>${c}</td>`).join('')+'</tr>').join('');
+  const lc=r.reduce((a,x)=>a+x.cost,0),le=r.reduce((a,x)=>a+x.lionExtra,0),gp=total-lc-le;
+  $('#lion').innerHTML=`<tr><td>${t('lPay')}</td><td class="n">${fmt(total)}</td></tr><tr><td>${t('lCost')}</td><td class="n">${fmt(-lc)}</td></tr><tr><td>${t('lExtra')}</td><td class="n">${fmt(-le)}</td></tr><tr><td><b>${t('lGp')}</b></td><td class="n"><b>${fmt(gp)} (${(gp/total*100).toFixed(1)}%)</b></td></tr>`;
+};
+const open=()=>{location.hash='calc';route()};
+$('#go').addEventListener('click',open);$('#cardBtn').addEventListener('click',open);
+$('#back').addEventListener('click',()=>{history.replaceState(null,'',location.pathname+location.search);route()});
+window.addEventListener('hashchange',route);
+$('#lang').addEventListener('click',e=>{const b=e.target.closest('button');if(!b)return;L=b.dataset.l;try{localStorage.setItem('passLang',L)}catch(err){}render()});
+$('#who').addEventListener('click',e=>{const b=e.target.closest('button');if(b){who=b.dataset.v;render()}});
+$('#ver').addEventListener('click',e=>{const b=e.target.closest('button');if(b){n=+b.dataset.n;render()}});
+$('#trips').addEventListener('change',e=>{const s=e.target;if(!s.dataset.k)return;const x=trips[+s.dataset.i];x[s.dataset.k]=s.dataset.k==='m'?+s.value:s.value;render()});
+render();route();
+}
+</script>
+</body>
+</html>
