@@ -8,7 +8,7 @@
 <link href="https://fonts.googleapis.com/css2?family=Inter+Tight:wght@400;500;600;700&family=Noto+Sans+TC:wght@400;500;700&family=Noto+Serif+TC:wght@600&display=swap" rel="stylesheet">
 <style>
 /* VOICE corporate, premium, confident: a travel company's membership product
-   IDEA a premium membership card you hold first, then open your year's statement
+   IDEA a playful member pass (ticket with stub and season stamps) you hold first, then open your year's statement
    PICTURE screen 1: the pass card itself, large; screen 2: a clean statement with a charcoal result panel
    COLOUR white and warm grey, charcoal ink, one corporate red accent; season colours only as thin bars
    TYPE Inter Tight + Noto Sans TC, Noto Serif TC for the card name
@@ -39,21 +39,28 @@ button:focus-visible,select:focus-visible{outline:3px solid var(--red);outline-o
 .cta:hover{filter:brightness(1.08)}
 .facts{display:flex;flex-wrap:wrap;gap:22px;margin-top:30px;font-size:14px;color:var(--soft)}
 .facts b{display:block;font-size:22px;color:var(--ink)}
-.card{position:relative;aspect-ratio:1.586;width:100%;max-width:560px;justify-self:center;border-radius:22px;background:linear-gradient(135deg,#25292e 0%,#15171a 60%,#2b2f35 100%);color:#fff;padding:clamp(18px,3.4vw,30px);box-shadow:0 30px 60px -20px rgba(0,0,0,.45),0 0 0 1px rgba(255,255,255,.06) inset;overflow:hidden;border:0;text-align:left;display:grid;grid-template-rows:auto 1fr auto;transition:transform .4s ease}
-.card:hover{transform:translateY(-4px) rotate(-.6deg)}
-.card .sheen{position:absolute;inset:0;background:linear-gradient(110deg,transparent 30%,rgba(255,255,255,.10) 45%,transparent 60%);pointer-events:none}
-.card .stripe{position:absolute;right:0;top:0;bottom:0;width:22%;background:linear-gradient(180deg,var(--win),var(--spr) 35%,var(--sum) 65%,var(--aut));opacity:.9}
-.card .stripe::before{content:"";position:absolute;left:-14px;top:0;bottom:0;width:14px;background:var(--red)}
-.c1{display:flex;justify-content:space-between;gap:10px;position:relative;width:74%}
-.c1 small{font-size:12px;letter-spacing:.08em;color:#c9ced3}
-.chipx{width:46px;height:34px;border-radius:7px;background:linear-gradient(135deg,#d9c27a,#a8893d);position:relative}
-.chipx::after{content:"";position:absolute;inset:8px 10px;border:1px solid rgba(0,0,0,.25);border-radius:3px}
-.cname{font-family:"Noto Serif TC",serif;font-size:clamp(22px,3.4vw,32px);align-self:center;position:relative;width:74%}
-.cname em{display:block;font-family:"Inter Tight",sans-serif;font-style:normal;font-size:clamp(12px,1.6vw,15px);letter-spacing:.14em;color:#c9ced3;margin-top:4px}
-.c3{display:grid;grid-template-columns:repeat(3,auto);justify-content:start;gap:clamp(14px,3vw,30px);position:relative;width:76%}
-.c3 small{display:block;font-size:11px;letter-spacing:.08em;color:#aeb4ba}
-.c3 b{font-size:clamp(14px,1.8vw,17px);font-weight:600;white-space:nowrap}
-.num{position:absolute;right:26%;bottom:clamp(18px,3.4vw,30px);font-size:13px;letter-spacing:.12em;color:#aeb4ba;margin-right:18px;display:none}
+.pass{position:relative;width:100%;max-width:580px;justify-self:center;border:0;padding:0;background:none;text-align:left;display:grid;grid-template-columns:minmax(0,1fr) clamp(92px,17%,124px);filter:drop-shadow(0 22px 26px rgba(25,35,50,.22));transition:transform .35s cubic-bezier(.3,1.5,.5,1);color:#17191c}
+.pass:hover{transform:translateY(-6px) rotate(-1.4deg)}
+.pmain{background:#fffdf6;border-radius:22px 0 0 22px;overflow:hidden;display:grid;-webkit-mask:radial-gradient(circle 13px at 100% 0,#0000 97%,#000) top/100% 51% no-repeat,radial-gradient(circle 13px at 100% 100%,#0000 97%,#000) bottom/100% 51% no-repeat;mask:radial-gradient(circle 13px at 100% 0,#0000 97%,#000) top/100% 51% no-repeat,radial-gradient(circle 13px at 100% 100%,#0000 97%,#000) bottom/100% 51% no-repeat}
+.scene{position:relative;height:clamp(112px,17vw,150px);overflow:hidden}
+.scene svg{position:absolute;inset:0;width:100%;height:100%}
+.ptag{position:absolute;top:12px;left:14px;display:flex;gap:6px;z-index:1}
+.ptag span{background:#fffdf6;color:#17191c;border-radius:999px;padding:3px 10px;font-size:11.5px;font-weight:700;letter-spacing:.1em}
+.ptag span+span{background:#17191c;color:#fff;letter-spacing:.04em}
+.pbody{padding:clamp(14px,2.6vw,22px) clamp(16px,3vw,26px) clamp(16px,2.8vw,24px)}
+.pname{font-family:"Noto Serif TC",serif;font-size:clamp(22px,3.3vw,30px);line-height:1.15}
+.pname em{display:block;font-family:"Inter Tight",sans-serif;font-style:normal;font-size:clamp(11px,1.4vw,13px);font-weight:600;letter-spacing:.2em;color:var(--red);margin-top:6px}
+.prow{display:flex;flex-wrap:wrap;gap:8px 22px;margin-top:clamp(12px,2vw,18px);padding-top:12px;border-top:2px dotted #d9d3c4}
+.prow small{display:block;font-size:11px;letter-spacing:.08em;color:#7a7f85}
+.prow b{font-size:clamp(14px,1.8vw,17px);font-weight:700;white-space:nowrap}
+.pstub{position:relative;background:var(--red);color:#fff;border-radius:0 22px 22px 0;display:flex;flex-direction:column;align-items:center;justify-content:space-between;gap:10px;padding:16px 6px;-webkit-mask:radial-gradient(circle 13px at 0 0,#0000 97%,#000) top/100% 51% no-repeat,radial-gradient(circle 13px at 0 100%,#0000 97%,#000) bottom/100% 51% no-repeat;mask:radial-gradient(circle 13px at 0 0,#0000 97%,#000) top/100% 51% no-repeat,radial-gradient(circle 13px at 0 100%,#0000 97%,#000) bottom/100% 51% no-repeat}
+.pstub::before{content:"";position:absolute;left:0;top:20px;bottom:20px;border-left:2px dashed rgba(255,255,255,.55)}
+.pstub small{font-size:10.5px;font-weight:700;letter-spacing:.16em}
+.stamps{display:grid;gap:7px;justify-items:center}
+.stamp{width:clamp(30px,5vw,38px);height:clamp(30px,5vw,38px);border-radius:50%;border:2px dashed rgba(255,255,255,.85);display:grid;place-items:center;font-weight:700;font-size:13px;transition:transform .3s cubic-bezier(.3,1.6,.5,1)}
+.stamp:nth-child(odd){transform:rotate(-8deg)}.stamp:nth-child(even){transform:rotate(7deg)}
+.pass:hover .stamp{transform:rotate(0) scale(1.08)}
+.pno{writing-mode:vertical-rl;font-size:10.5px;letter-spacing:.18em;opacity:.85}
 .cardcol{display:grid;justify-items:center;gap:14px}.tap{font-size:14px;color:var(--soft);margin:0}
 .wrap{max-width:1200px;margin:0 auto;padding:8px max(4vw,16px) 56px}
 .back{border:0;background:none;color:var(--soft);padding:8px 0;min-height:40px}
@@ -90,10 +97,28 @@ tfoot td{font-weight:700;border-bottom:0}
 .dot{display:inline-block;width:9px;height:9px;border-radius:50%;margin-right:6px}
 .cols{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:16px}
 .cols ul{margin:0;padding-left:20px}.cols li{margin:5px 0}
+.mperks{list-style:none;margin:0;padding:0;display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:8px 14px;width:100%;max-width:560px}
+.mperks li{display:flex;gap:8px;align-items:flex-start;font-size:14px;line-height:1.4;background:var(--paper);border:1px solid var(--line);border-radius:10px;padding:9px 11px}
+.mperks li::before{content:"";flex:0 0 8px;height:8px;margin-top:6px;border-radius:50%;background:var(--red)}
+.mperks li b{display:block;font-weight:600}.mperks li span{display:block;font-size:12.5px;color:var(--soft)}
+.sec{max-width:1200px;margin:0 auto;padding:8px max(4vw,16px) 40px}
+.sec>p{color:var(--soft);margin:8px 0 18px;max-width:60ch}
+.why{display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:14px}
+.why .box{margin:0}.why b{display:block;font-size:17px;margin-bottom:6px}.why p{margin:0;color:var(--soft);font-size:14.5px}
+.why .k{font-size:13px;font-weight:700;color:var(--red);letter-spacing:.06em;display:block;margin-bottom:8px}
+.wishes{display:flex;flex-wrap:wrap;gap:10px;margin-bottom:14px}
+.wishes label{display:inline-flex;align-items:center;gap:8px;border:1px solid var(--line);background:var(--paper);border-radius:999px;padding:9px 16px;min-height:44px;cursor:pointer}
+.wishes input{accent-color:var(--red);width:18px;height:18px}
+.wishes label:has(input:checked){border-color:var(--red);box-shadow:0 0 0 1px var(--red) inset}
+textarea{width:100%;min-height:84px;padding:10px 12px;border-radius:10px;border:1px solid var(--line);background:var(--paper);font:inherit;color:var(--ink);resize:vertical;box-sizing:border-box}
+textarea:focus-visible{outline:3px solid var(--red);outline-offset:2px}
+.wrow{display:flex;flex-wrap:wrap;gap:12px;align-items:center;margin-top:12px}
+.wok{font-size:14px;color:var(--soft)}
+.bdg{display:inline-block;font-size:12px;border:1px solid var(--line);border-radius:999px;padding:2px 8px;margin-left:6px;color:var(--soft);font-weight:500}
 details summary{cursor:pointer;font-weight:600;min-height:32px}
-@media(max-width:900px){.hero,.calc{grid-template-columns:minmax(0,1fr)}.res{position:static}.card{max-width:520px}.hero{padding-bottom:70px}}
-@media(max-width:600px){.cols{grid-template-columns:minmax(0,1fr)}.trip{grid-template-columns:6px minmax(0,1fr) minmax(0,1fr)}.trip b{grid-column:2/-1}.trip select{grid-column:auto}.trip .bon{grid-column:2/-1}.trip i{grid-row:span 3}table{font-size:13px}th,td{padding:7px 4px}}
-@media(prefers-reduced-motion:no-preference){.view.on{animation:in .45s ease}@keyframes in{from{opacity:0;transform:translateY(12px)}to{opacity:1;transform:none}}.card .sheen{animation:sh 5s ease-in-out infinite}@keyframes sh{0%,60%{transform:translateX(-60%)}100%{transform:translateX(60%)}}}
+@media(max-width:900px){.why{grid-template-columns:repeat(2,minmax(0,1fr))}.hero,.calc{grid-template-columns:minmax(0,1fr)}.res{position:static}.pass{max-width:520px}.hero{padding-bottom:70px}}
+@media(max-width:600px){.why,.mperks{grid-template-columns:minmax(0,1fr)}.cols{grid-template-columns:minmax(0,1fr)}.trip{grid-template-columns:6px minmax(0,1fr) minmax(0,1fr)}.trip b{grid-column:2/-1}.trip select{grid-column:auto}.trip .bon{grid-column:2/-1}.trip i{grid-row:span 3}table{font-size:13px}th,td{padding:7px 4px}}
+@media(prefers-reduced-motion:no-preference){.view.on{animation:in .45s ease}@keyframes in{from{opacity:0;transform:translateY(12px)}to{opacity:1;transform:none}}.cardcol .pass{animation:bob 4.5s ease-in-out infinite}.cardcol .pass:hover{animation:none}@keyframes bob{0%,100%{translate:0 0}50%{translate:0 -6px}}}
 </style>
 </head>
 <body>
@@ -111,15 +136,53 @@ details summary{cursor:pointer;font-weight:600;min-height:32px}
 <div class="facts" id="facts"></div>
 </div>
 <div class="cardcol">
-<button class="card" id="cardBtn" aria-label="Open calculator">
-<span class="sheen"></span><span class="stripe"></span>
-<div class="c1"><div><small>HOKKAIDO</small><br><small id="cKind"></small></div><span class="chipx"></span></div>
-<div class="cname"><span data-t="cName"></span><em>FOUR-SEASON PASS</em></div>
-<div class="c3"><div><small data-t="cHolder"></small><b data-t="cHolderV"></b></div><div><small data-t="cTrips"></small><b id="cTripsV"></b></div><div><small data-t="cValid"></small><b>2027.01–12</b></div></div>
+<button class="pass" id="cardBtn" aria-label="Open calculator">
+<div class="pmain">
+<div class="scene">
+<svg viewBox="0 0 400 150" preserveAspectRatio="xMidYMid slice" aria-hidden="true">
+<defs><linearGradient id="sky" x1="0" x2="1"><stop offset="0" stop-color="#cfe3f1"/><stop offset=".33" stop-color="#fbd9e3"/><stop offset=".66" stop-color="#ddd3f6"/><stop offset="1" stop-color="#fbd7b8"/></linearGradient></defs>
+<rect width="400" height="150" fill="url(#sky)"/>
+<circle cx="338" cy="38" r="17" fill="#ffb25b"/>
+<g fill="#fff" opacity=".9"><circle cx="40" cy="30" r="2.2"/><circle cx="64" cy="52" r="1.8"/><circle cx="22" cy="62" r="1.6"/><circle cx="84" cy="24" r="1.6"/></g>
+<g stroke="#ff7a9c" stroke-width="2.2" stroke-linecap="round"><path d="M250 30v-9M250 30l7-6M250 30l9 2M250 30l6 7M250 30l-6 7M250 30l-9 2M250 30l-7-6"/></g>
+<path d="M0 112 L58 54 L80 74 L118 40 L170 100 L0 120Z" fill="#5d7f98"/>
+<path d="M58 54 L70 66 L64 64 L80 74 L92 62 L118 40 L104 58 L94 62 L80 74 L72 70Z" fill="#fff"/>
+<path d="M150 112 C200 80 250 82 300 96 S380 80 400 86 V150 H150Z" fill="#a08ad8"/>
+<g stroke="#7d64c9" stroke-width="3" stroke-linecap="round" opacity=".8"><path d="M190 118 L216 100M214 124 L242 104M240 128 L268 108M266 130 L294 112"/></g>
+<path d="M300 150 C320 110 360 104 400 112 V150Z" fill="#e58a45"/>
+<g fill="#c9612a"><circle cx="352" cy="118" r="7"/><circle cx="372" cy="114" r="8"/><circle cx="388" cy="122" r="6"/></g>
+<path d="M0 124 C40 116 90 118 150 128 C120 140 60 150 0 150Z" fill="#7fb6d8"/>
+<path d="M18 134 h30 M70 140 h24" stroke="#fff" stroke-width="2" stroke-linecap="round" opacity=".7"/>
+<g fill="#f2a7bb"><circle cx="126" cy="118" r="7"/><circle cx="138" cy="112" r="8"/><circle cx="150" cy="120" r="6"/></g>
+</svg>
+<div class="ptag"><span>MEMBER PASS</span><span id="cKind"></span></div>
+</div>
+<div class="pbody">
+<div class="pname"><span data-t="cName"></span><em>HOKKAIDO · FOUR-SEASON PASS</em></div>
+<div class="prow"><div><small data-t="cHolder"></small><b data-t="cHolderV"></b></div><div><small data-t="cTrips"></small><b id="cTripsV"></b></div><div><small data-t="cValid"></small><b data-t="cValidV"></b></div></div>
+</div>
+</div>
+<div class="pstub"><small>TRIPS</small><div class="stamps" id="stamps"></div><span class="pno">No. 2027 · 0001</span></div>
 </button>
 <p class="tap" data-t="tap"></p>
+<ul class="mperks" id="mperks" aria-label="Member benefits"></ul>
 </div>
 </div>
+<section class="sec" aria-labelledby="whyT">
+<h2 id="whyT" data-t="whyT"></h2>
+<p data-t="whyS"></p>
+<div class="why" id="why"></div>
+</section>
+<section class="sec" aria-labelledby="wishT">
+<h2 id="wishT" data-t="wishT"></h2>
+<p data-t="wishS"></p>
+<div class="box">
+<div class="wishes" id="wishes"></div>
+<label for="wishTxt" style="display:block;font-weight:600;margin-bottom:6px" data-t="wishL"></label>
+<textarea id="wishTxt"></textarea>
+<div class="wrow"><button class="cta" id="wishGo" style="min-height:46px;padding:10px 22px;font-size:16px"><span data-t="wishBtn"></span></button><span class="wok" id="wishOk" aria-live="polite"></span></div>
+</div>
+</section>
 </main>
 
 <main id="calcV" class="view">
@@ -157,7 +220,10 @@ details summary{cursor:pointer;font-weight:600;min-height:32px}
 <div class="box"><h3 data-t="perkT"></h3><ul id="perks"></ul></div>
 <div class="box"><h3 data-t="ruleT"></h3><div class="scroll"><table><thead id="rth"></thead><tbody id="rtb"></tbody></table></div><p class="note" data-t="ruleNote"></p></div>
 </div>
-<details class="box"><summary data-t="lionT"></summary><div class="scroll" style="margin-top:8px"><table><tbody id="lion"></tbody></table></div><p class="note" data-t="lionNote"></p></details>
+<details class="box"><summary data-t="lionT"></summary><div class="scroll" style="margin-top:8px"><table><tbody id="lion"></tbody></table></div><p class="note" data-t="lionNote"></p>
+<h3 style="margin-top:18px" data-t="bkT"></h3>
+<div style="max-width:320px"><select id="skip" aria-label="Unused trip"></select></div>
+<div class="scroll" style="margin-top:8px"><table><tbody id="bk"></tbody></table></div><p class="note" data-t="bkNote"></p></details>
 <p class="note" data-t="assume"></p>
 </div>
 </main>
@@ -166,7 +232,7 @@ details summary{cursor:pointer;font-weight:600;min-height:32px}
 {
 const $=s=>document.querySelector(s);
 const T={
-zh:{hTitle:'一張卡，一整年的北海道',hSub:'旺季先訂、平淡季鎖價、機場到飯店不用自己安排。這是你的四季通行證，點開看看這一年怎麼用。',cta:'幫我算算看',facts:[['2～4 趟','一年內使用'],['3～4 晚','每趟連住一個基地'],['2 個基地','洞爺湖・富良野']],kind:n=>`${n} 趟版`,cName:'北海道四季通行證',cHolder:'持卡人',cHolderV:'王先生',cTrips:'趟數',cValid:'有效期',tap:'點一下卡片開始試算',back:'← 回到通行證',cTitle:'你的一年試算',
+zh:{hTitle:'一張通行證，玩遍北海道四季',hSub:'旺季先訂、平淡季鎖價、機場到飯店不用自己安排。這是你的四季通行證，點開看看這一年怎麼玩。',cta:'幫我算算看',facts:[['2～4 趟','一年內使用'],['3～4 晚','每趟連住一個基地'],['2 個基地','洞爺湖・富良野']],kind:n=>`${n} 趟版`,cName:'北海道四季通行證',cHolder:'持卡人',cHolderV:'貴賓',cTrips:'趟數',cValid:'有效期',cValidV:'購買起 1 年',tap:'點一下通行證，看看這一年怎麼玩',back:'← 回到通行證',cTitle:'你的一年試算',
 whoL:'出遊人數與房型',pair:'兩人各一張・同房',comp:'我持證＋一位同行者',solo:'一人入住',verL:'通行證版本',ver:n=>`${n} 趟版`,tripsL:'每趟安排（每趟 3 晚）',monthNote:'月份以該月主要等級計算；跨年、春節與薰衣草週為超旺季，另訂加價表。',totalL:'每位持證人總花費',trip:i=>`第 ${i} 趟`,toya:'洞爺湖・登別',furano:'富良野・美瑛',mon:m=>`${m} 月`,peak:'旺季',reg:'平季',off:'淡季',bNight:'淡季加碼：多住一晚',bExp:'淡季加碼：加一項體驗',bNone:'非淡季，無加碼',
 pairH:v=>`兩人合計 ${v}・不含機票`,compH:(c,t)=>`同行者另付 ${c}・兩人合計 ${t}`,soloH:'一人入住另補單人房差',save:(v,p)=>`比自己訂省 ${v}（${p}%）`,
 kPass:n=>`通行證 ${n} 趟（預付 95 折）`,kAdd:'預約時補差額',kSelf:'自己訂要花',kBonus:'淡季加碼價值',
@@ -175,8 +241,12 @@ docT:'試算明細',th:['趟次','基地','月份','晚數','通行證','補差�
 compNote:v=>`同行者每趟付單趟價（NT$11,500＋該趟補差額，無預付折扣），合計 ${v}；一年內加購通行證可依比例折抵。`,soloNote:'一人入住每趟另補單人房差；部分景觀房型不接受單人入住。',
 perkT:'通行證權益',perks:o=>['每趟入住看得到當季景色的飯店，含早晚餐','每趟一項季節招牌體驗','新千歲機場往返固定班次接駁','旺季比一般客人更早預約，價格不高於飯店公開價','平淡季價格購買時鎖定',o?`${o} 趟淡季加碼＋${o} 次旺季優先權`:'淡季入住享多住一晚或加一項體驗','未用完趟數以八成轉為雄獅幣'],
 ruleT:'預約與取消',rth:['等級','開放預約','免費取消','視同使用一趟'],rows:[['旺季','出發前 6 個月（超旺季 9 個月）','60 天前','13 天內或未到'],['平季、淡季','隨時','14 天前','13 天內或未到']],ruleNote:'旺季 14～59 天前取消收分段手續費、不扣趟。天災、航班取消可於有效期後 6 個月內補住；旅途中天候延誤的接駁由雄獅負擔。',
+mperks:[['旺季優先預約','比一般客人更早開放'],['平淡季鎖價','購買時鎖定，全年不漲'],['機場接駁','新千歲往返固定班次'],['淡季加碼','多住一晚或加一項體驗'],['未用完轉雄獅幣','不作廢，以八成轉換'],['會員專屬體驗','花火包船、契作田等']],
+whyT:'為什麼是會員制',whyS:'一般行程每趟都要重新比價、重新訂房；會員制把一整年的北海道一次安排好，你只要決定什麼時候出發。',why:[['01','一次規劃一整年','買一次就好，之後每趟只要選日期與基地，不用每次重新比價、訂房、查交通。'],['02','熱門日期先拿到','旺季比一般客人更早開放預約，還有持證者專屬名額。'],['03','越常去越划算','每住一趟淡季就多一次加碼與旺季優先權，權益會隨使用累積。'],['04','不怕用不完','有效期內沒用完的趟數不作廢，轉成雄獅幣，還能用在其他行程。']],
+wishT:'許願池',wishS:'你想要什麼樣的北海道？勾選想要的雄獅專屬行程，或寫下自己的願望。我們會依會員的願望，開發下一批專屬體驗。',wishList:['洞爺湖花火包船','雪地露天溫泉','富良野農場契作','美瑛星空觀測','阿伊努文化工作坊','秋季採收與酒莊'],wishL:'或寫下你的願望',wishBtn:'投入許願池',wishOk:n=>`已收到 ${n} 個願望，謝謝！（示範用，只存在這個瀏覽器）`,wishNone:'先勾選一項或寫下願望',
+bkT:'如果有一趟沒去',bkSel:i=>`沒去的是第 ${i} 趟`,bkUsed:'這一趟有去：雄獅毛利',bkCoin:'沒去：轉成雄獅幣（八成）',bkKeep:'沒去：雄獅當下保留（兩成，扣除未發生的補差額）',bkAll:'整張通行證毛利（這趟沒去）',bkExp:'若雄獅幣到期未使用，整張通行證毛利',bkNote:'沒去的那趟不會預約，所以客人不付補差額、雄獅也沒有住宿與接駁成本。雄獅幣日後用在其他產品時，該筆消費本身仍有毛利，此處未計入。',
 lionT:'雄獅端：這張通行證的毛利（簡報備用）',lPay:'持證人實付',lCost:'住宿、稅、接駁、體驗成本',lExtra:'淡季加碼成本（雄獅負擔）',lGp:'雄獅毛利',lionNote:'合約價以零售價八折計；淡季多住一晚由雄獅負擔（洞爺湖每晚約 NT$2,650、富良野約 NT$3,321），加一項體驗約 NT$833。',assume:'試算假設：合約價為零售價八折、匯率 0.2083（2026/11/17 臺銀）、每人金額、兩人一房、不含機票。數字取自報告第八章。雄獅旅遊哈伯造星 Team Vancouver 提案。'},
-en:{hTitle:'One card. A whole year of Hokkaido.',hSub:'Peak dates booked first, regular and off-season prices locked, airport to hotel taken care of. This is your Four-Season Pass: open it to see how your year works.',cta:'Calculate my year',facts:[['2–4 trips','within one year'],['3–4 nights','at one base per trip'],['2 bases','Lake Toya · Furano']],kind:n=>`${n}-TRIP PASS`,cName:'Hokkaido Four-Season Pass',cHolder:'HOLDER',cHolderV:'Mr. Wang',cTrips:'TRIPS',cValid:'VALID',tap:'Tap the card to start',back:'← Back to the pass',cTitle:'Your year, calculated',
+en:{hTitle:'One pass. Four seasons of Hokkaido.',hSub:'Peak dates booked first, regular and off-season prices locked, airport to hotel taken care of. This is your Four-Season Pass: open it to see how your year works.',cta:'Calculate my year',facts:[['2–4 trips','within one year'],['3–4 nights','at one base per trip'],['2 bases','Lake Toya · Furano']],kind:n=>`${n}-TRIP PASS`,cName:'Hokkaido Four-Season Pass',cHolder:'HOLDER',cHolderV:'Valued Guest',cTrips:'TRIPS',cValid:'VALID',cValidV:'1 YEAR',tap:'Tap the pass to plan your year',back:'← Back to the pass',cTitle:'Your year, calculated',
 whoL:'Travellers and room',pair:'Two people, one pass each',comp:'Me + a companion',solo:'Staying alone',verL:'Pass',ver:n=>`${n} trips`,tripsL:'Your trips (3 nights each)',monthNote:'Months use their main season tier. New Year, Lunar New Year and lavender week are super-peak with a separate surcharge.',totalL:'Total per pass holder',trip:i=>`Trip ${i}`,toya:'Lake Toya–Noboribetsu',furano:'Furano–Biei',mon:m=>['','Jan','Feb','Mar','Apr','May','Jun','Jul','Aug','Sep','Oct','Nov','Dec'][m],peak:'Peak',reg:'Regular',off:'Off-season',bNight:'Bonus: extra night',bExp:'Bonus: extra experience',bNone:'No bonus outside off-season',
 pairH:v=>`${v} for both · flights not included`,compH:(c,t)=>`Companion pays ${c} · ${t} for both`,soloH:'Single supplement applies',save:(v,p)=>`${v} less than booking yourself (${p}%)`,
 kPass:n=>`Pass, ${n} trips (5% prepay discount)`,kAdd:'Differences paid when booking',kSelf:'Booking it yourself',kBonus:'Value of off-season bonus',
@@ -185,6 +255,10 @@ docT:'Breakdown',th:['Trip','Base','Month','Nights','Pass','Difference','You pay
 compNote:v=>`The companion pays the single-trip price each trip (NT$11,500 plus the difference, no prepay discount), ${v} in total; credited if they buy a pass within a year.`,soloNote:'A single supplement applies each trip; some view rooms do not take single guests.',
 perkT:'Pass benefits',perks:o=>['A hotel room with a seasonal view on every trip, breakfast and dinner included','One signature seasonal experience per trip','Fixed-schedule New Chitose Airport transfers','Book peak dates before ordinary customers, never above the public price','Regular and off-season prices locked at purchase',o?`${o} off-season bonus(es) + ${o} extra peak priority booking(s)`:'Off-season stays get an extra night or an extra experience','Unused trips convert to Lion Coins at 80%'],
 ruleT:'Booking and cancellation',rth:['Tier','Booking opens','Free cancellation','Counts as a trip used'],rows:[['Peak','6 months before (super-peak 9)','60+ days before','Within 13 days or no-show'],['Regular, off-season','Any time','14+ days before','Within 13 days or no-show']],ruleNote:'Peak cancellations 14–59 days before pay a staged fee, no trip deducted. Disaster or flight cancellations can be made up within 6 months after expiry; extra transfers due to weather during a trip are paid by Lion Travel.',
+mperks:[['Peak priority booking','opens before everyone else'],['Locked regular prices','fixed at purchase for the year'],['Airport transfers','fixed New Chitose shuttles'],['Off-season bonus','an extra night or experience'],['Unused trips to Lion Coins','never wasted, 80% value'],['Members-only experiences','fireworks cruise, farm plot and more']],
+whyT:'Why a membership',whyS:'A normal tour means comparing prices and booking again every trip. A membership sets up your whole Hokkaido year at once; you only choose when to go.',why:[['01','Plan the year once','Buy once, then just pick a date and a base for each trip. No more price-checking, booking and transport planning every time.'],['02','Get the busy dates','Peak booking opens to holders before everyone else, with holder-only allocations.'],['03','The more you go, the more you get','Every off-season stay adds a bonus and an extra peak priority booking.'],['04','Nothing goes to waste','Trips left unused at expiry become Lion Coins for any other Lion Travel product.']],
+wishT:'Wishing well',wishS:'What Hokkaido do you want? Tick the Lion Travel exclusives you would like, or write your own wish. Members\' wishes shape the next experiences we develop.',wishList:['Lake Toya fireworks cruise','Snowy open-air onsen','Furano farm plot','Biei stargazing','Ainu craft workshop','Autumn harvest and winery'],wishL:'Or write your own wish',wishBtn:'Make a wish',wishOk:n=>`${n} wish(es) received, thank you! (Demo only: kept in this browser)`,wishNone:'Tick one or write a wish first',
+bkT:'If one trip goes unused',bkSel:i=>`Unused trip: trip ${i}`,bkUsed:'Trip taken: Lion Travel margin',bkCoin:'Not taken: converted to Lion Coins (80%)',bkKeep:'Not taken: kept by Lion Travel now (20%, no difference paid)',bkAll:'Whole-pass margin (this trip unused)',bkExp:'Whole-pass margin if the coins expire unused',bkNote:'An unused trip is never booked, so no difference is paid and Lion Travel has no hotel or transfer cost. When the coins are later spent on other products, that sale earns its own margin, not counted here.',
 lionT:"Lion Travel's margin on this pass (for Q&A)",lPay:'Pass holder pays',lCost:'Hotel, taxes, transfers, experience',lExtra:'Off-season bonus (paid by Lion Travel)',lGp:'Gross profit',lionNote:'Contract rates at 80% of retail. Lion Travel pays for the off-season extra night (about NT$2,650 at Lake Toya, NT$3,321 at Furano); an extra experience costs about NT$833.',assume:'Assumptions: contract rates at 80% of retail, exchange rate 0.2083 (Bank of Taiwan, 2026/11/17), per person, two per room, flights not included. Figures from Chapter 8 of the report. A Lion Travel Hubble programme proposal by Team Vancouver.'}};
 let L='zh';try{L=localStorage.getItem('passLang')||'zh'}catch(e){}
 const t=k=>T[L][k];
@@ -196,6 +270,7 @@ const cost={toya:{off:9407,peak:16256},furano:{off:12464,peak:21110}};
 const nightCost={toya:2650,furano:3321},EXP=833;
 const tierOf=[null,'peak','peak','reg','off','reg','reg','peak','peak','reg','reg','off','reg'];
 const seasonOf=m=>m===12||m<=2?'win':m<=5?'spr':m<=8?'sum':'aut';
+let skip=1;
 let who='pair',n=2,trips=[{b:'toya',m:11,bonus:'night'},{b:'furano',m:7,bonus:'night'},{b:'toya',m:2,bonus:'night'},{b:'furano',m:9,bonus:'night'}];
 const opts=(arr,sel)=>arr.map(([v,l])=>`<option value="${v}"${v==sel?' selected':''}>${l}</option>`).join('');
 const show=v=>{$('#home').classList.toggle('on',v==='home');$('#calcV').classList.toggle('on',v==='calc');window.scrollTo(0,0)};
@@ -204,8 +279,12 @@ const render=()=>{
   document.documentElement.lang=L==='zh'?'zh-Hant':'en';
   for(const el of document.querySelectorAll('[data-t]')){const v=t(el.dataset.t);if(typeof v==='string')el.textContent=v}
   for(const b of $('#lang').children)b.setAttribute('aria-pressed',b.dataset.l===L);
+  $('#mperks').innerHTML=t('mperks').map(([a,b])=>`<li><div><b>${a}</b><span>${b}</span></div></li>`).join('');
+  $('#why').innerHTML=t('why').map(([k,a,b])=>`<div class="box"><span class="k">${k}</span><b>${a}</b><p>${b}</p></div>`).join('');
+  const wsel=new Set([...document.querySelectorAll('#wishes input:checked')].map(x=>+x.value));
+  $('#wishes').innerHTML=t('wishList').map((w,i)=>`<label><input type="checkbox" value="${i}"${wsel.has(i)?' checked':''}>${w}</label>`).join('');
   $('#facts').innerHTML=t('facts').map(([a,b])=>`<div><b>${a}</b>${b}</div>`).join('');
-  $('#cKind').textContent=t('kind')(n);$('#cTripsV').textContent=String(n);
+  $('#cKind').textContent=t('kind')(n);$('#stamps').innerHTML=Array.from({length:n},(_,i)=>`<span class="stamp">${i+1}</span>`).join('');$('#cTripsV').textContent=String(n);
   for(const b of $('#who').children){b.textContent=t(b.dataset.v);b.setAttribute('aria-pressed',b.dataset.v===who)}
   for(const b of $('#ver').children){b.textContent=t('ver')(+b.dataset.n);b.setAttribute('aria-pressed',+b.dataset.n===n)}
   const months=Array.from({length:12},(_,i)=>[i+1,`${t('mon')(i+1)} · ${t(tierOf[i+1])}`]);
@@ -238,6 +317,10 @@ const render=()=>{
   $('#rth').innerHTML='<tr>'+t('rth').map(h=>`<th>${h}</th>`).join('')+'</tr>';
   $('#rtb').innerHTML=t('rows').map(row=>'<tr>'+row.map(c=>`<td>${c}</td>`).join('')+'</tr>').join('');
   const lc=r.reduce((a,x)=>a+x.cost,0),le=r.reduce((a,x)=>a+x.lionExtra,0),gp=total-lc-le;
+  if(skip>n)skip=n;
+  $('#skip').innerHTML=Array.from({length:n},(_,i)=>`<option value="${i+1}"${i+1===skip?' selected':''}>${t('bkSel')(i+1)} · ${t(r[i].x.b)} ${t('mon')(r[i].x.m)}</option>`).join('');
+  const k=r[skip-1],per=UNIT*DISC,used=k.pay-k.cost-k.lionExtra,coin=per*.8,keep=per-coin,gpU=gp-used+keep;
+  $('#bk').innerHTML=`<tr><td>${t('bkUsed')}</td><td class="n">${fmt(used)}</td></tr><tr><td>${t('bkCoin')}</td><td class="n">${fmt(coin)}</td></tr><tr><td>${t('bkKeep')}</td><td class="n">${fmt(keep)}</td></tr><tr><td><b>${t('bkAll')}</b></td><td class="n"><b>${fmt(gpU)}</b></td></tr><tr><td>${t('bkExp')}</td><td class="n">${fmt(gpU+coin)}</td></tr>`;
   $('#lion').innerHTML=`<tr><td>${t('lPay')}</td><td class="n">${fmt(total)}</td></tr><tr><td>${t('lCost')}</td><td class="n">${fmt(-lc)}</td></tr><tr><td>${t('lExtra')}</td><td class="n">${fmt(-le)}</td></tr><tr><td><b>${t('lGp')}</b></td><td class="n"><b>${fmt(gp)} (${(gp/total*100).toFixed(1)}%)</b></td></tr>`;
 };
 const open=()=>{location.hash='calc';route()};
@@ -248,6 +331,12 @@ $('#lang').addEventListener('click',e=>{const b=e.target.closest('button');if(!b
 $('#who').addEventListener('click',e=>{const b=e.target.closest('button');if(b){who=b.dataset.v;render()}});
 $('#ver').addEventListener('click',e=>{const b=e.target.closest('button');if(b){n=+b.dataset.n;render()}});
 $('#trips').addEventListener('change',e=>{const s=e.target;if(!s.dataset.k)return;const x=trips[+s.dataset.i];x[s.dataset.k]=s.dataset.k==='m'?+s.value:s.value;render()});
+$('#skip').addEventListener('change',e=>{skip=+e.target.value;render()});
+$('#wishGo').addEventListener('click',()=>{const c=[...document.querySelectorAll('#wishes input:checked')].map(x=>+x.value),txt=$('#wishTxt').value.trim();
+  if(!c.length&&!txt){$('#wishOk').textContent=t('wishNone');return}
+  try{const a=JSON.parse(localStorage.getItem('passWish')||'[]');a.push({c,txt,at:Date.now()});localStorage.setItem('passWish',JSON.stringify(a))}catch(err){}
+  $('#wishOk').textContent=t('wishOk')(c.length+(txt?1:0));$('#wishTxt').value='';for(const x of document.querySelectorAll('#wishes input'))x.checked=false});
+$('#wishTxt').setAttribute('placeholder','');
 render();route();
 }
 </script>
